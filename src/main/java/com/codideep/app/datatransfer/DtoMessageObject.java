@@ -45,11 +45,11 @@ public class DtoMessageObject {
         this.type = "error";
     }
 
-    public String getType() {
-        return this.type;
+    public List<String> getListMessage() {
+        return listMessage;
     }
 
-    public List<String> getListMessage() {
-        return this.listMessage;
+    public String getType() {
+        return type;
     }
 }
