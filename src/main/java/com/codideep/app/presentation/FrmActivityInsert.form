@@ -98,29 +98,32 @@
                               <Component id="lblEndDay" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="lblEndMonth" alignment="0" pref="82" max="32767" attributes="0"/>
-                              <Component id="cbxEndMonth" alignment="0" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="0" pref="13" max="32767" attributes="0"/>
-                                  <Component id="lblEndYear" min="-2" pref="82" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="cbxEndHour" min="-2" pref="82" max="-2" attributes="0"/>
+                                      <Component id="lblEndHour" alignment="0" min="-2" pref="82" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="cbxEndMinute" max="32767" attributes="0"/>
+                                      <Component id="lblEndMinute" max="32767" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <Component id="cbxEndYear" alignment="0" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="cbxEndHour" alignment="1" min="-2" pref="82" max="-2" attributes="0"/>
-                              <Component id="lblEndHour" alignment="1" min="-2" pref="82" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="lblEndMinute" alignment="0" pref="82" max="32767" attributes="0"/>
-                              <Component id="cbxEndMinute" alignment="0" max="32767" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="lblEndMonth" alignment="0" pref="82" max="32767" attributes="0"/>
+                                      <Component id="cbxEndMonth" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="0" pref="13" max="32767" attributes="0"/>
+                                          <Component id="lblEndYear" min="-2" pref="82" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="cbxEndYear" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
                       </Group>
                   </Group>
@@ -192,11 +195,7 @@
         <Component class="javax.swing.JComboBox" name="cbxEndDay">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="3">
-                <StringItem index="0" value="00"/>
-                <StringItem index="1" value="01"/>
-                <StringItem index="2" value="03"/>
-              </StringArray>
+              <StringArray count="0"/>
             </Property>
           </Properties>
           <AuxValues>
@@ -206,13 +205,12 @@
         <Component class="javax.swing.JComboBox" name="cbxEndMonth">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="3">
-                <StringItem index="0" value="00"/>
-                <StringItem index="1" value="01"/>
-                <StringItem index="2" value="03"/>
-              </StringArray>
+              <StringArray count="0"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbxEndMonthItemStateChanged"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
@@ -220,10 +218,7 @@
         <Component class="javax.swing.JComboBox" name="cbxEndYear">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="2">
-                <StringItem index="0" value="2025"/>
-                <StringItem index="1" value="2026"/>
-              </StringArray>
+              <StringArray count="0"/>
             </Property>
           </Properties>
           <AuxValues>
@@ -239,11 +234,7 @@
         <Component class="javax.swing.JComboBox" name="cbxEndHour">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="3">
-                <StringItem index="0" value="00"/>
-                <StringItem index="1" value="01"/>
-                <StringItem index="2" value="03"/>
-              </StringArray>
+              <StringArray count="0"/>
             </Property>
           </Properties>
           <AuxValues>
@@ -259,11 +250,7 @@
         <Component class="javax.swing.JComboBox" name="cbxEndMinute">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="3">
-                <StringItem index="0" value="00"/>
-                <StringItem index="1" value="01"/>
-                <StringItem index="2" value="03"/>
-              </StringArray>
+              <StringArray count="0"/>
             </Property>
           </Properties>
           <AuxValues>
@@ -387,11 +374,7 @@
         <Component class="javax.swing.JComboBox" name="cbxBeginDay">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="3">
-                <StringItem index="0" value="01"/>
-                <StringItem index="1" value="02"/>
-                <StringItem index="2" value="03"/>
-              </StringArray>
+              <StringArray count="0"/>
             </Property>
           </Properties>
           <AuxValues>
@@ -401,13 +384,12 @@
         <Component class="javax.swing.JComboBox" name="cbxBeginMonth">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="3">
-                <StringItem index="0" value="01"/>
-                <StringItem index="1" value="02"/>
-                <StringItem index="2" value="03"/>
-              </StringArray>
+              <StringArray count="0"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbxBeginMonthItemStateChanged"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
@@ -415,10 +397,7 @@
         <Component class="javax.swing.JComboBox" name="cbxBeginYear">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="2">
-                <StringItem index="0" value="2025"/>
-                <StringItem index="1" value="2026"/>
-              </StringArray>
+              <StringArray count="0"/>
             </Property>
           </Properties>
           <AuxValues>
@@ -434,11 +413,7 @@
         <Component class="javax.swing.JComboBox" name="cbxBeginHour">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="3">
-                <StringItem index="0" value="00"/>
-                <StringItem index="1" value="01"/>
-                <StringItem index="2" value="03"/>
-              </StringArray>
+              <StringArray count="0"/>
             </Property>
           </Properties>
           <AuxValues>
@@ -454,11 +429,7 @@
         <Component class="javax.swing.JComboBox" name="cbxBeginMinute">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="3">
-                <StringItem index="0" value="00"/>
-                <StringItem index="1" value="01"/>
-                <StringItem index="2" value="03"/>
-              </StringArray>
+              <StringArray count="0"/>
             </Property>
           </Properties>
           <AuxValues>

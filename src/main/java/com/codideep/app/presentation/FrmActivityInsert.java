@@ -6,8 +6,8 @@ package com.codideep.app.presentation;
 
 import com.codideep.app.business.BusinessActivity;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Calendar;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -15,7 +15,17 @@ import java.util.logging.Logger;
  */
 public class FrmActivityInsert extends javax.swing.JInternalFrame {
 
-    private BusinessActivity businessActivity;
+    private final BusinessActivity businessActivity;
+    private final DefaultComboBoxModel<String> cbxModelBeginYear;
+    private final DefaultComboBoxModel<String> cbxModelEndYear;
+    private final DefaultComboBoxModel<String> cbxModelBeginMonth;
+    private final DefaultComboBoxModel<String> cbxModelEndMonth;
+    private final DefaultComboBoxModel<String> cbxModelBeginDay;
+    private final DefaultComboBoxModel<String> cbxModelEndDay;
+    private final DefaultComboBoxModel<String> cbxModelBeginHour;
+    private final DefaultComboBoxModel<String> cbxModelEndHour;
+    private final DefaultComboBoxModel<String> cbxModelBeginMinutes;
+    private final DefaultComboBoxModel<String> cbxModelEndMinutes;
 
     /**
      * Creates new form FrmActivityInsert
@@ -24,6 +34,67 @@ public class FrmActivityInsert extends javax.swing.JInternalFrame {
         initComponents();
 
         this.businessActivity = new BusinessActivity();
+        
+        cbxModelBeginYear = new DefaultComboBoxModel<>();
+        cbxModelEndYear = new DefaultComboBoxModel<>();
+        cbxModelBeginMonth = new DefaultComboBoxModel<>();
+        cbxModelEndMonth = new DefaultComboBoxModel<>();
+        cbxModelBeginDay = new DefaultComboBoxModel<>();
+        cbxModelEndDay = new DefaultComboBoxModel<>();
+        cbxModelBeginHour = new DefaultComboBoxModel<>();
+        cbxModelEndHour = new DefaultComboBoxModel<>();
+        cbxModelBeginMinutes = new DefaultComboBoxModel<>();
+        cbxModelEndMinutes = new DefaultComboBoxModel<>();
+        
+        int initYear = Calendar.getInstance().get(Calendar.YEAR);
+        
+        for(int i = 0; i < 3; i++) {
+            cbxModelBeginYear.addElement(String.valueOf(initYear + i));
+            cbxModelEndYear.addElement(String.valueOf(initYear + i));
+        }
+        
+        cbxBeginYear.setModel(cbxModelBeginYear);
+        cbxEndYear.setModel(cbxModelEndYear);
+        
+        for(int i = 0; i < 12; i++) {
+            String tempData = String.valueOf(i + 1);
+            
+            cbxModelBeginMonth.addElement((tempData.length() == 1 ? "0" : "") + tempData);
+            cbxModelEndMonth.addElement((tempData.length() == 1 ? "0" : "") + tempData);
+        }
+        
+        cbxBeginMonth.setModel(cbxModelBeginMonth);
+        cbxEndMonth.setModel(cbxModelEndMonth);
+        
+        for(int i = 0; i < 31; i++) {
+            String tempData = String.valueOf(i + 1);
+            
+            cbxModelBeginDay.addElement((tempData.length() == 1 ? "0" : "") + tempData);
+            cbxModelEndDay.addElement((tempData.length() == 1 ? "0" : "") + tempData);
+        }
+        
+        cbxBeginDay.setModel(cbxModelBeginDay);
+        cbxEndDay.setModel(cbxModelEndDay);
+        
+        for(int i = 0; i < 24; i++) {
+            String tempData = String.valueOf(i);
+            
+            cbxModelBeginHour.addElement((tempData.length() == 1 ? "0" : "") + tempData);
+            cbxModelEndHour.addElement((tempData.length() == 1 ? "0" : "") + tempData);
+        }
+        
+        cbxBeginHour.setModel(cbxModelBeginHour);
+        cbxEndHour.setModel(cbxModelEndHour);
+        
+        for(int i = 0; i < 60; i++) {
+            String tempData = String.valueOf(i);
+            
+            cbxModelBeginMinutes.addElement((tempData.length() == 1 ? "0" : "") + tempData);
+            cbxModelEndMinutes.addElement((tempData.length() == 1 ? "0" : "") + tempData);
+        }
+        
+        cbxBeginMinute.setModel(cbxModelBeginMinutes);
+        cbxEndMinute.setModel(cbxModelEndMinutes);
     }
 
     /**
@@ -86,21 +157,17 @@ public class FrmActivityInsert extends javax.swing.JInternalFrame {
         lblEndYear.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblEndYear.setText("Año");
 
-        cbxEndDay.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "03" }));
-
-        cbxEndMonth.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "03" }));
-
-        cbxEndYear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2025", "2026" }));
+        cbxEndMonth.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbxEndMonthItemStateChanged(evt);
+            }
+        });
 
         lblEndHour.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblEndHour.setText("Hora");
 
-        cbxEndHour.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "03" }));
-
         lblEndMinute.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblEndMinute.setText("Minuto");
-
-        cbxEndMinute.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "03" }));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -116,24 +183,25 @@ public class FrmActivityInsert extends javax.swing.JInternalFrame {
                             .addComponent(cbxEndDay, javax.swing.GroupLayout.Alignment.LEADING, 0, 82, Short.MAX_VALUE)
                             .addComponent(lblEndDay, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblEndMonth, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
-                            .addComponent(cbxEndMonth, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(0, 13, Short.MAX_VALUE)
-                                .addComponent(lblEndYear, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(cbxEndYear, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbxEndHour, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblEndHour, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblEndMinute, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
-                            .addComponent(cbxEndMinute, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cbxEndHour, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblEndHour, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(12, 12, 12)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cbxEndMinute, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblEndMinute, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lblEndMonth, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
+                                    .addComponent(cbxEndMonth, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addGap(0, 13, Short.MAX_VALUE)
+                                        .addComponent(lblEndYear, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(cbxEndYear, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -178,21 +246,17 @@ public class FrmActivityInsert extends javax.swing.JInternalFrame {
         lblBeginYear.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblBeginYear.setText("Año");
 
-        cbxBeginDay.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03" }));
-
-        cbxBeginMonth.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03" }));
-
-        cbxBeginYear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2025", "2026" }));
+        cbxBeginMonth.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbxBeginMonthItemStateChanged(evt);
+            }
+        });
 
         lblBeginHour.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblBeginHour.setText("Hora");
 
-        cbxBeginHour.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "03" }));
-
         lblBeginMinute.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblBeginMinute.setText("Minuto");
-
-        cbxBeginMinute.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "03" }));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -323,6 +387,40 @@ public class FrmActivityInsert extends javax.swing.JInternalFrame {
             System.out.println(ex.getMessage());
         }
     }//GEN-LAST:event_btnInsertActionPerformed
+
+    private boolean isLeapYear(int year) {
+        return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+    }
+    
+    private void onChangeMonth(int year, String selectedMonth, DefaultComboBoxModel dcbModel) {
+        int dayQuantity = 31;
+        
+        String[] arrayDay30 = { "04", "06", "09", "11" };
+        
+        if(java.util.Arrays.asList(arrayDay30).contains(selectedMonth)) {
+            dayQuantity = 30;
+        }
+        
+        if(selectedMonth.equals("02")) {
+            dayQuantity = isLeapYear(year) ? 29 : 28;
+        }
+        
+        dcbModel.removeAllElements();
+        
+        for(int i = 0; i < dayQuantity; i++) {
+            String tempData = String.valueOf(i + 1);
+            
+            dcbModel.addElement((tempData.length() == 1 ? "0" : "") + tempData);
+        }
+    }
+            
+    private void cbxBeginMonthItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxBeginMonthItemStateChanged
+        this.onChangeMonth(Integer.parseInt(cbxBeginYear.getSelectedItem().toString()), cbxBeginMonth.getSelectedItem().toString(), cbxModelBeginDay);
+    }//GEN-LAST:event_cbxBeginMonthItemStateChanged
+
+    private void cbxEndMonthItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxEndMonthItemStateChanged
+        this.onChangeMonth(Integer.parseInt(cbxEndYear.getSelectedItem().toString()), cbxEndMonth.getSelectedItem().toString(), cbxModelEndDay);
+    }//GEN-LAST:event_cbxEndMonthItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
